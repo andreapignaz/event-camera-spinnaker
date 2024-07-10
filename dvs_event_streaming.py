@@ -40,7 +40,7 @@ if not(camera.isEventStreamAvailable()):
 print("Configure UDP")
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 clientSocket.settimeout(1)
-addr = (args.server_address, args.server_port)
+addr = (args.server_address, int(args.server_port))
 
 print("Start streaming")
 
