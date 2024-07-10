@@ -11,6 +11,18 @@ The host computer should have the dvs_processing Python library installed. I'd s
 Then, the `dvs_event_streaming.py` can be used to stream event camera data via UDP on Ethernet. 
 
 ```
+usage: dvs_event_streaming.py [-h] [-c CAMERA_NAME] [-s SERVER_ADDRESS] [-p SERVER_PORT]
+
+Stream events from a single iniVation camera to a server via UDP. Format of the message is: (timestamp,x,y,polarity)
+
+options:
+  -h, --help            show this help message and exit
+  -c CAMERA_NAME, --camera_name CAMERA_NAME
+                        Camera name (e.g. DVXplorer_DXA00093). The application will open any supported camera if no camera name is provided.
+  -s SERVER_ADDRESS, --server_address SERVER_ADDRESS
+                        IP Address of the destination server. If nothing is set, localhost will be used.
+  -p SERVER_PORT, --server_port SERVER_PORT
+                        Port of the destination server. If nothing is set, 12000 will be used.
 ```
 
 ## Server
