@@ -6,7 +6,7 @@ from socket import *
 # DAVIS346_00000499
 # or launch dv-list-devices
 
-parser = argparse.ArgumentParser(description='Record data from a single iniVation camera to a file.')
+parser = argparse.ArgumentParser(description='Stream events from a single iniVation camera to a server via UDP. Format of the message is:\n(timestamp,x,y,polarity)')
 parser.add_argument("-c",
                     "--camera_name",
                     dest='camera_name',
@@ -25,7 +25,7 @@ parser.add_argument("-p",
                     dest='server_port',
                     default=12000,
                     type=str,
-                    help="IP Address of the destination server. If nothing is set, 12000 will be used.")           
+                    help="Port of the destination server. If nothing is set, 12000 will be used.")           
 args = parser.parse_args()
 
 print("Configure camera")
