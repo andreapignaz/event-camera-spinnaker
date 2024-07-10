@@ -25,5 +25,10 @@ options:
                         Port of the destination server. If nothing is set, 12000 will be used.
 ```
 
+The host can test the connection to the UDP server via the `test_udp_connection.py` script (remember to customize it with the correct IP address and port).
+
 ## Server
 An example application for the server is `simple_udp_server.py` that prints on stdout received packets. 
+
+The script `from_udp_to_file.py` script instead receives packets from UDP and saves them to a aedat4 file that can be read via the DV application to check the quality of the received data. 
+An example called `output.aedat4` is provided-
