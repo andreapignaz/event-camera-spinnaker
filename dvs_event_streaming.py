@@ -26,6 +26,12 @@ parser.add_argument("-p",
                     default=12000,
                     type=str,
                     help="Port of the destination server. If nothing is set, 12000 will be used.")           
+parser.add_argument("-r",
+                    "--resize",
+                    dest='scale_ratio',
+                    default=1,
+                    type=int,
+                    help="Ratio to be used when scaling input. If nothing is set, no resize will happen.")           
 args = parser.parse_args()
 
 print("Configure camera")
@@ -44,15 +50,27 @@ addr = (args.server_address, int(args.server_port))
 
 print("Start streaming")
 
+if scale_ratio = 1
+    resize = False
+else
+    resize = True
+
 try: 
     while camera.isConnected():
         # Get Events
         events = camera.getNextEventBatch()
         # Process  Events
         if events is not None:
-            for ev in events:
-                message = f"({ev.timestamp()}, {ev.x()}, {ev.y()}, {ev.polarity()})"
-                clientSocket.sendto(message.encode(), addr)
+            if not resize:
+                for ev in events:
+                    message = f"({ev.timestamp()}, {ev.x()}, {ev.y()}, {ev.polarity()})"
+                    clientSocket.sendto(message.encode(), addr)
+            else:
+                for ev in events:
+                    r_x = int(ev.x() * scale_ratio)
+                    r_y = int(ev.y() * scale_ratio)
+                    message = f"({ev.timestamp()}, {r_x}, {r_y}, {ev.polarity()})"
+                    clientSocket.sendto(message.encode(), addr)
 
 except KeyboardInterrupt:
     print("Ending streaming")
